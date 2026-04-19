@@ -17,7 +17,8 @@ app = Flask(__name__)
 # Modeli yükle
 model = pickle.load(open("model.pkl", "rb"))
 explainer = shap.LinearExplainer(model, np.zeros((1, 8)))
-heart_model = pickle.load(open("heart\heart_model.pkl", "rb"))
+heart_model_path = os.path.join(BASE_DIR, "heart", "heart_model.pkl")
+heart_model = pickle.load(open(heart_model_path, "rb"))
 
 def create_heart_pdf(result, probability):
     pdf_path = os.path.join(BASE_DIR, "heart_report.pdf")
