@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kalp Analiz Sonucu</title>
+
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background: linear-gradient(135deg, #e0f2fe, #f8fafc);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .card {
+            width: 90%;
+            max-width: 700px;
+            background: white;
+            border-radius: 24px;
+            padding: 40px;
+            box-shadow: 0 12px 30px rgba(0, 0, 0, 0.12);
+            text-align: center;
+        }
+
+        h1 {
+            margin-bottom: 25px;
+            color: #111827;
+        }
+
+        .result-box {
+            padding: 18px;
+            border-radius: 14px;
+            font-size: 22px;
+            font-weight: bold;
+            margin-bottom: 25px;
+            background: #dcfce7;
+            color: #166534;
+        }
+
+        .bar-bg {
+            width: 100%;
+            height: 28px;
+            background: #e5e7eb;
+            border-radius: 14px;
+            overflow: hidden;
+            margin-top: 20px;
+            margin-bottom: 25px;
+        }
+
+        .bar-fill {
+            height: 100%;
+            border-radius: 14px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: bold;
+            font-size: 18px;
+        }
+
+        .back-btn {
+            display: inline-block;
+            text-decoration: none;
+            background: #2563eb;
+            color: white;
+            padding: 14px 28px;
+            border-radius: 12px;
+            font-weight: bold;
+        }
+
+        .back-btn:hover {
+            opacity: 0.95;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="card">
+        <h1>🩺 Analiz Sonucu</h1>
+<!--    ⚠️ UYARI -->
+        <div style="background:#fff7ed; color:#9a3412; border:1px solid #fdba74; padding:14px; border-radius:12px; margin:15px 0; font-size:14px; line-height:1.5;">
+            ⚠️ Bu uygulama yalnızca eğitim ve demo amaçlıdır.
+            Klinik karar destek aracı olarak geliştirilmiştir ancak kesin tanı yerine geçmez.
+        </div>
+
+        <div class="result-box">
+            {{ result }}
+        </div>
+
+        <div class="bar-bg">
+            <div
+                class="bar-fill"
+                style="
+                    width: {{ probability }}%;
+                    background-color:
+                    {% if probability < 40 %}
+                        #16a34a
+                    {% elif probability < 70 %}
+                        #f59e0b
+                    {% else %}
+                        #dc2626
+                    {% endif %};
+                "
+            >
+                {{ probability }}%
+            </div>
+        </div>
+        <h3>Risk Grafiği</h3>
+        <img src="{{ url_for('static', filename='risk_grafigi.png') }}" width="400">
+        <br><br>
+        <h3>SHAP Açıklaması</h3>
+        <img src="{{ url_for('static', filename='heart_shap.png') }}" width="500">
+        <br><br>
+        <a href="/download-heart-pdf" class="back-btn" style="margin-right: 15px;">PDF İndir</a>
+        <a href="/heart" class="back-btn">Geri Dön</a>
+    </div>
+
+</body>
+</html>

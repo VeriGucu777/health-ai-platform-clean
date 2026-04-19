@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Diyabet Tahmin Sistemi</title>
+
+    <style>
+        body {
+            background: #0f172a;
+            color: white;
+            font-family: Arial;
+            text-align: center;
+        }
+
+        .container {
+            width: 400px;
+            margin: auto;
+            margin-top: 50px;
+            padding: 20px;
+            background: #1e293b;
+            border-radius: 15px;
+            box-shadow: 0 0 20px rgba(0,0,0,0.3);
+        }
+
+        input {
+            width: 90%;
+            padding: 10px;
+            margin: 10px;
+            border-radius: 10px;
+            border: none;
+        }
+
+        button {
+            width: 95%;
+            padding: 12px;
+            background: #22c55e;
+            color: white;
+            border: none;
+            border-radius: 10px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background: #16a34a;
+        }
+
+        #result {
+            margin-top: 20px;
+            font-size: 20px;
+            font-weight: bold;
+        }
+
+        #pdfLink {
+            display: none;
+            margin-top: 10px;
+            color: #38bdf8;
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="container">
+    <h2>🩸 Diyabet Tahmin Sistemi</h2>
+<!-- BURAYA EKLEDİN -->
+    <div style="background:#fff7ed; color:#9a3412; border:1px solid #fdba74; padding:12px; border-radius:8px; margin:15px 0;">
+        ⚠️ Bu uygulama yalnızca eğitim ve demo amaçlıdır.
+        Klinik karar destek aracı olarak geliştirilmiştir ancak kesin tanı yerine geçmez.
+    </div>
+    <input type="number" id="Pregnancies" placeholder="Gebelik Sayısı"><br>
+    <input type="number" id="Glucose" placeholder="Glikoz"><br>
+    <input type="number" id="BloodPressure" placeholder="Tansiyon"><br>
+    <input type="number" id="SkinThickness" placeholder="Deri Kalınlığı"><br>
+    <input type="number" id="Insulin" placeholder="İnsülin"><br>
+    <input type="number" step="0.1" id="BMI" placeholder="BMI"><br>
+    <input type="number" step="0.1" id="DiabetesPedigreeFunction" placeholder="Genetik"><br>
+    <input type="number" id="Age" placeholder="Yaş"><br>
+
+    <button onclick="predict()">Tahmin Yap</button>
+
+    <h3 id="result"></h3>
+    <a id="pdfLink" style="display:none;" download>
+    📄 PDF İndir
+</a>
+    <img id="graphImage" style="width:100%; margin-top:20px;" />
+    <div id="shapResult"></div>
+</div>
+
+<script>
+function predict() {
+
+    const data = {
+        Pregnancies: parseInt(document.getElementById("Pregnancies").value),
+        Glucose: parseFloat(document.getElementById("Glucose").value),
+        BloodPressure: parseFloat(document.getElementById("BloodPressure").value),
+        SkinThickness: parseFloat(document.getElementById("SkinThickness").value),
+        Insulin: parseFloat(document.getElementById("Insulin").value),
+        BMI: parseFloat(document.getElementById("BMI").value),
+        DiabetesPedigreeFunction: parseFloat(document.getElementById("DiabetesPedigreeFunction").value),
+        Age: parseInt(document.getElementById("Age").value)
+    };
+
+    fetch("/predict", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify(data)
+    })
+    .then(res => res.json())
+    .then(result => {
+
+        const resultElement = document.getElementById("result");
+
+        resultElement.innerText =
+            result.result + " (%" + result.probability + ")";
+        const graphImage = document.getElementById("graphImage");
+graphImage.src = "data:image/png;base64," + result.graph;
+        if (result.result.includes("YOK")) {
+            resultElement.className = "ok";
+        } else {
+            resultElement.className = "risk";
+        }
+         const pdfLink = document.getElementById("pdfLink");
+    pdfLink.href = "/download/" + result.pdf;
+    pdfLink.style.display = "block";
+
+        // SHAP göster
+        const shapDiv = document.getElementById("shapResult");
+       shapDiv.innerHTML = "<h3>SHAP Analizi:</h3>";
+
+for (let key in result.shap) {
+
+    let value = result.shap[key];
+    let color = value > 0 ? "red" : "blue";
+
+    shapDiv.innerHTML += `
+        <div style="margin:5px;">
+            <span>${key}</span>
+            <div style="
+                display:inline-block;
+                width:${Math.abs(value) * 30}px;
+                height:10px;
+                background:${color};
+                margin-left:10px;
+            "></div>
+            <span>${value.toFixed(2)}</span>
+        </div>
+    `;
+}
+
+    })
+    .catch(err => {
+        console.log("HATA:", err);
+        alert("Bir hata oluştu!");
+    });
+}
+</script>
+</body>
+</html>

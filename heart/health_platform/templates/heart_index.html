@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kalp Hastalığı Risk Analizi</title>
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background: linear-gradient(135deg, #0f172a, #1e293b);
+            min-height: 100vh;
+            padding: 40px 20px;
+        }
+
+        .container {
+            max-width: 760px;
+            margin: 0 auto;
+            background: #ffffff;
+            border-radius: 22px;
+            padding: 32px;
+            box-shadow: 0 16px 40px rgba(0, 0, 0, 0.25);
+        }
+
+        .title {
+            text-align: center;
+            margin-bottom: 8px;
+            font-size: 34px;
+            font-weight: bold;
+            color: #111827;
+        }
+
+        .subtitle {
+            text-align: center;
+            color: #6b7280;
+            margin-bottom: 28px;
+            font-size: 15px;
+        }
+
+        .form-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 18px 18px;
+        }
+
+        .form-group {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .form-group.full {
+            grid-column: 1 / -1;
+        }
+
+        label {
+            font-size: 14px;
+            font-weight: bold;
+            margin-bottom: 7px;
+            color: #1f2937;
+        }
+
+        input {
+            width: 100%;
+            padding: 12px 14px;
+            border: 1px solid #d1d5db;
+            border-radius: 12px;
+            font-size: 15px;
+            transition: 0.2s ease;
+        }
+
+        input:focus {
+            outline: none;
+            border-color: #2563eb;
+            box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.15);
+        }
+
+        .hint {
+            font-size: 12px;
+            color: #6b7280;
+            margin-top: 5px;
+        }
+
+        .button-area {
+            margin-top: 28px;
+        }
+
+        button {
+            width: 100%;
+            border: none;
+            border-radius: 14px;
+            padding: 15px;
+            font-size: 17px;
+            font-weight: bold;
+            color: white;
+            cursor: pointer;
+            background: linear-gradient(90deg, #16a34a, #22c55e);
+            transition: 0.2s ease;
+        }
+
+        button:hover {
+            opacity: 0.96;
+            transform: translateY(-1px);
+        }
+
+        .top-badge {
+            display: inline-block;
+            background: #fee2e2;
+            color: #b91c1c;
+            padding: 8px 14px;
+            border-radius: 999px;
+            font-size: 13px;
+            font-weight: bold;
+            margin-bottom: 16px;
+        }
+
+        .header-wrap {
+            text-align: center;
+            margin-bottom: 10px;
+        }
+
+        @media (max-width: 700px) {
+            .container {
+                padding: 22px;
+            }
+
+            .title {
+                font-size: 28px;
+            }
+
+            .form-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header-wrap">
+            <div class="top-badge">Kalp Modülü</div>
+            <div class="title">❤️ Kalp Hastalığı Risk Analizi</div>
+            <div class="subtitle">Klinik veriler üzerinden kalp hastalığı risk değerlendirmesi</div>
+        </div>
+        <div style="background:#fff7ed; color:#9a3412; border:1px solid #fdba74; padding:12px; border-radius:8px; margin:15px 0;">
+             ⚠️ Bu uygulama yalnızca eğitim ve demo amaçlıdır.
+             Klinik karar destek aracı olarak geliştirilmiştir ancak kesin tanı yerine geçmez.
+        </div>
+
+        <form action="/predict" method="post">
+        <form action="/predict" method="post">
+            <input type="hidden" name="model" value="heart">
+
+            <div class="form-grid">
+                <div class="form-group">
+                    <label for="yas">Yaş</label>
+                    <input type="number" id="yas" name="yas" placeholder="Örn: 52" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="cinsiyet">Cinsiyet</label>
+                    <input type="number" id="cinsiyet" name="cinsiyet" placeholder="1=Erkek, 0=Kadın" required>
+                    <div class="hint">1 erkek, 0 kadın</div>
+                </div>
+
+                <div class="form-group">
+                    <label for="gogus_agrisi">Göğüs Ağrısı</label>
+                    <input type="number" id="gogus_agrisi" name="gogus_agrisi" placeholder="0 - 3" required>
+                    <div class="hint">0 ile 3 arasında değer girin</div>
+                </div>
+
+                <div class="form-group">
+                    <label for="tansiyon">Tansiyon</label>
+                    <input type="number" id="tansiyon" name="tansiyon" placeholder="Örn: 130" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="kolesterol">Kolesterol</label>
+                    <input type="number" id="kolesterol" name="kolesterol" placeholder="Örn: 240" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="kan_sekeri">Kan Şekeri</label>
+                    <input type="number" id="kan_sekeri" name="kan_sekeri" placeholder="0 veya 1" required>
+                    <div class="hint">0 normal, 1 yüksek</div>
+                </div>
+
+                <div class="form-group">
+                    <label for="ekg">EKG</label>
+                    <input type="number" id="ekg" name="ekg" placeholder="0 - 2" required>
+                    <div class="hint">0 ile 2 arasında değer girin</div>
+                </div>
+
+                <div class="form-group">
+                    <label for="max_nabiz">Max Nabız</label>
+                    <input type="number" id="max_nabiz" name="max_nabiz" placeholder="Örn: 150" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="egzersiz_anjina">Egzersiz Anjina</label>
+                    <input type="number" id="egzersiz_anjina" name="egzersiz_anjina" placeholder="0 veya 1" required>
+                    <div class="hint">0 yok, 1 var</div>
+                </div>
+
+                <div class="form-group">
+                    <label for="st_depresyon">ST Depresyon</label>
+                    <input type="number" step="any" id="st_depresyon" name="st_depresyon" placeholder="Örn: 1.4" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="egim">Eğim</label>
+                    <input type="number" id="egim" name="egim" placeholder="0 - 2" required>
+                    <div class="hint">0 ile 2 arasında değer girin</div>
+                </div>
+
+                <div class="form-group">
+                    <label for="damar_sayisi">Damar Sayısı</label>
+                    <input type="number" id="damar_sayisi" name="damar_sayisi" placeholder="0 - 3" required>
+                    <div class="hint">0 ile 3 arasında değer girin</div>
+                </div>
+
+                <div class="form-group full">
+                    <label for="thal">Thal</label>
+                    <input type="number" id="thal" name="thal" placeholder="1 - 3" required>
+                    <div class="hint">1 ile 3 arasında değer girin</div>
+                </div>
+            </div>
+
+            <div class="button-area">
+                <button type="submit">Tahmin Yap</button>
+            </div>
+        </form>
+    </div>
+</body>
+</html>

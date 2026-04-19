@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sağlık AI Platformu</title>
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background: linear-gradient(135deg, #0f172a, #1e293b);
+            color: white;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 900px;
+            text-align: center;
+            padding: 40px 0;
+        }
+
+        .title {
+            font-size: 42px;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+
+        .subtitle {
+            font-size: 18px;
+            color: #cbd5e1;
+            margin-bottom: 40px;
+        }
+
+        .cards {
+            display: flex;
+            gap: 25px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .card {
+            background: white;
+            color: #111827;
+            width: 320px;
+            border-radius: 20px;
+            padding: 30px 25px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.25);
+        }
+
+        .card h2 {
+            margin-top: 0;
+            margin-bottom: 12px;
+        }
+
+        .card p {
+            color: #4b5563;
+            min-height: 50px;
+        }
+
+        .btn {
+            display: inline-block;
+            margin-top: 20px;
+            padding: 14px 24px;
+            border-radius: 12px;
+            text-decoration: none;
+            color: white;
+            font-weight: bold;
+        }
+
+        .heart-btn {
+            background: #2563eb;
+        }
+
+        .diabetes-btn {
+            background: #dc2626;
+        }
+
+        .note {
+            margin-top: 35px;
+            background: #fff7ed;
+            color: #9a3412;
+            border: 1px solid #fdba74;
+            padding: 16px;
+            border-radius: 14px;
+            font-size: 15px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="title">Sağlık AI Platformu</div>
+        <div class="subtitle">Karar destek amaçlı demo modüller</div>
+
+        <div class="cards">
+            <div class="card">
+                <h2>❤️ Kalp Analizi</h2>
+                <p>Kalp hastalığı risk değerlendirmesi için demo modül.</p>
+                <a href="/heart" class="btn heart-btn">Kalp Modülüne Git</a>
+            </div>
+
+            <div class="card">
+                <h2>🩸 Diyabet Analizi</h2>
+                <p>Diyabet risk değerlendirmesi için demo modül.</p>
+                <a href="/diabetes" class="btn diabetes-btn">Diyabet Modülüne Git</a>
+            </div>
+        </div>
+
+        <div class="note">
+            Bu platform yalnızca eğitim ve demo amaçlıdır. Klinik karar, tanı veya tedavi yerine geçmez.
+        </div>
+    </div>
+</body>
+</html>
