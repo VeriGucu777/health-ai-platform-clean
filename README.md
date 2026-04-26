@@ -51,8 +51,6 @@ The goal of this project is to build a practical AI-based health risk analysis p
 
 Ümmü Gülsüm Coşkun  
 GitHub: [VeriGucu777](https://github.com/VeriGucu777)
+Linkedln: https://www.linkedin.com/in/ummugulsum-coskun-75a132332/
 ## 🌐 Live Demo
-
-This project is deployed and accessible online:
-
 👉 [View Live Application](https://health-ai-platform-clean.onrender.com)
