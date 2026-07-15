@@ -1,0 +1,12 @@
+[
+    {
+        "patient_name": "Demo Patient",
+        "disease": "Heart Disease",
+        "result": "🚨 High Risk (%77.46)",
+        "risk_probability": 77.46,
+        "created_date": "2026-07-12",
+        "follow_up_date": "2026-10-10",
+        "doctor_note": "Heart disease risk detected. Follow-up control is recommended.",
+        "status": "Waiting"
+    }
+]

@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Stroke Prediction Result</title>
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background: linear-gradient(135deg, #0b132b, #1c2541, #0b132b);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: white;
+        }
+
+        .card {
+            background: rgba(255,255,255,0.08);
+            padding: 35px;
+            border-radius: 22px;
+            width: 90%;
+            max-width: 550px;
+            text-align: center;
+            box-shadow: 0 10px 35px rgba(0,0,0,0.35);
+        }
+       .agent-box {
+            margin-top: 20px;
+            padding: 15px;
+            border-radius: 15px;
+            background: rgba(255,255,255,0.15);
+            color: white;
+            font-size: 16px;
+            line-height: 1.5;
+        }
+        h1 {
+            margin-bottom: 20px;
+        }
+        .result {
+            font-size: 28px;
+            font-weight: bold;
+            margin: 20px 0;
+        }
+        .prob {
+            font-size: 22px;
+            margin-bottom: 25px;
+        }
+        a {
+            display: inline-block;
+            padding: 12px 22px;
+            border-radius: 12px;
+            background: #22c55e;
+            color: white;
+            text-decoration: none;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <div class="card">
+        <div class="result">Result: {{ result }}</div>
+
+<div class="prob">Risk Probability: %{{ probability }}</div>
+
+<div class="agent-box">
+    <h3>🧠 AI Agent Interpretation</h3>
+    <p>{{ agent_comment }}</p>
+
+    <h3>SHAP Analysis</h3>
+    <img src="{{ shap_plot }}" style="width: 500px; border-radius: 10px; margin-top: 10px;">
+</div>
+
+<a href="/static/stroke_report.pdf" download="stroke_report.pdf" class="btn">
+    📄 Download PDF Report
+</a>
+
+<a href="/stroke">Make New Prediction</a>
+    </div>
+</body>
+</html>

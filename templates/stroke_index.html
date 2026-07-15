@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Stroke Risk Prediction</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+
+        body {
+            margin: 0;
+            padding: 0;
+            min-height: 100vh;
+            background: linear-gradient(135deg, #0b132b, #1c2541, #0b132b);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 700px;
+            margin: 30px 15px;
+            background: rgba(255, 255, 255, 0.06);
+            border-radius: 24px;
+            padding: 35px 30px;
+            box-shadow: 0 10px 35px rgba(0, 0, 0, 0.35);
+            backdrop-filter: blur(6px);
+        }
+
+        .title {
+            text-align: center;
+            color: white;
+            font-size: 38px;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+
+        .subtitle {
+            text-align: center;
+            color: #d9e2f1;
+            font-size: 18px;
+            margin-bottom: 25px;
+        }
+
+        .warning-box {
+            background: #fff4e5;
+            color: #9a5a00;
+            border: 1px solid #f2c078;
+            border-radius: 14px;
+            padding: 16px;
+            text-align: center;
+            font-size: 17px;
+            line-height: 1.5;
+            margin-bottom: 28px;
+        }
+
+        .form-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 18px 18px;
+        }
+
+        .form-group {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .full-width {
+            grid-column: 1 / -1;
+        }
+
+        label {
+            color: white;
+            font-size: 16px;
+            font-weight: 600;
+            margin-bottom: 8px;
+        }
+
+        input, select {
+            width: 100%;
+            padding: 14px 14px;
+            border-radius: 12px;
+            border: none;
+            outline: none;
+            font-size: 16px;
+            background: white;
+            color: #222;
+        }
+
+        input::placeholder {
+            color: #888;
+        }
+
+        .button-area {
+            margin-top: 28px;
+        }
+
+        button {
+            width: 100%;
+            padding: 15px;
+            border: none;
+            border-radius: 14px;
+            background: linear-gradient(90deg, #22c55e, #16a34a);
+            color: white;
+            font-size: 18px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: 0.25s ease;
+        }
+
+        button:hover {
+            transform: translateY(-1px);
+            box-shadow: 0 8px 18px rgba(34, 197, 94, 0.28);
+        }
+
+        .back-home {
+            margin-top: 16px;
+            text-align: center;
+        }
+
+        .back-home a {
+            color: #cbd5e1;
+            text-decoration: none;
+            font-size: 15px;
+        }
+
+        .back-home a:hover {
+            text-decoration: underline;
+        }
+
+        @media (max-width: 768px) {
+            .title {
+                font-size: 30px;
+            }
+
+            .subtitle {
+                font-size: 16px;
+            }
+
+            .form-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .container {
+                padding: 25px 18px;
+            }
+        }
+        .follow-up-button {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin-top: 20px;
+    }
+
+    .follow-up-button a {
+        display: inline-block;
+        padding: 18px 35px;
+        background: #2196f3;
+        color: white;
+        text-decoration: none;
+        font-size: 18px;
+        font-weight: bold;
+        border-radius: 12px;
+        text-align: center;
+        transition: 0.3s;
+    }
+
+    .follow-up-button a:hover {
+        transform: translateY(-2px);
+        opacity: 0.9;
+    }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+    <div class="title">🧠 Stroke Risk Prediction</div>
+    <div class="subtitle">Machine learning-powered demo decision support form</div>
+
+    <div class="warning-box">
+        ⚠️ This application is for educational and demo purposes only.<br>
+        It has been developed as a clinical decision support tool, but it does not replace a definitive diagnosis.
+    </div>
+
+    <form action="/stroke_predict" method="POST">
+    <div class="form-grid">
+
+        <div class="form-group">
+            <label for="patient_name">Patient Name</label>
+            <input type="text"
+                   id="patient_name"
+                   name="patient_name"
+                   placeholder="e.g. John Smith"
+                   required>
+        </div>
+
+        <div class="form-group">
+            <label for="age">Age</label>
+            <input type="number"
+                   id="age"
+                   name="age"
+                   placeholder="e.g. 45"
+                   required>
+        </div>
+
+                <div class="form-group">
+    <label for="avg_glucose_level">Average Glucose Level</label>
+    <input type="number" step="any" id="avg_glucose_level" name="avg_glucose_level">
+</div>
+
+<div class="form-group">
+    <label for="bmi">BMI (Body Mass Index)</label>
+    <input type="number" step="any" id="bmi" name="bmi" placeholder="e.g. 27.4" required>
+</div>
+
+<div class="form-group">
+    <label for="hypertension">Hypertension</label>
+    <select id="hypertension" name="hypertension" required>
+        <option value="0">No</option>
+        <option value="1">Yes</option>
+    </select>
+</div>
+               <div class="form-group">
+    <label for="heart_disease">Heart Disease</label>
+    <select id="heart_disease" name="heart_disease" required>
+        <option value="0">No</option>
+        <option value="1">Yes</option>
+    </select>
+</div>
+
+<div class="form-group">
+    <label for="gender">Gender</label>
+    <select id="gender" name="gender" required>
+        <option value="Female">Female</option>
+        <option value="Male">Male</option>
+        <option value="Other">Other</option>
+    </select>
+</div>
+
+                <div class="form-group">
+                    <label for="ever_married">Married?</label>
+                    <select id="ever_married" name="ever_married" required>
+                        <option value="No">No</option>
+                        <option value="Yes">Yes</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+    <label for="residence_type">Residence Type</label>
+    <select id="residence_type" name="residence_type" required>
+        <option value="Urban">Urban</option>
+        <option value="Rural">Rural</option>
+    </select>
+</div>
+
+<div class="form-group full-width">
+    <label for="work_type">Work Type</label>
+    <select id="work_type" name="work_type" required>
+        <option value="Private">Private Sector</option>
+        <option value="Self-employed">Self-employed</option>
+        <option value="Govt_job">Government</option>
+        <option value="children">Child</option>
+        <option value="Never_worked">Never Worked</option>
+    </select>
+</div>
+                <div class="form-group full-width">
+                    <label for="smoking_status">Smoking Status</label>
+    <select id="smoking_status" name="smoking_status" required>
+        <option value="never smoked">Never Smoked</option>
+        <option value="formerly smoked">Former Smoker</option>
+        <option value="smokes">Smokes</option>
+        <option value="Unknown">Unknown</option>
+    </select>
+</div>
+
+<div class="button-area">
+    <button type="submit">Predict</button>
+</div>
+
+</form>
+
+<div class="follow-up-button">
+    <a href="/stroke-follow-up">📋 Stroke Follow-Up List</a>
+</div>
+        </div>
+    </div>
+
+</body>
+</html>

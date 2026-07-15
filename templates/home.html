@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Health AI Platformu</title>
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background: linear-gradient(135deg, #0f172a, #1e293b);
+            color: white;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 900px;
+            text-align: center;
+            padding: 40px 0;
+        }
+
+        .title {
+            font-size: 42px;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+        .live-badge {
+    display: inline-block;
+    background: #16a34a;
+    color: white;
+    font-size: 14px;
+    padding: 6px 12px;
+    border-radius: 999px;
+    margin-left: 12px;
+    vertical-align: middle;
+    box-shadow: 0 0 12px rgba(34,197,94,0.6);
+}
+        .subtitle {
+            font-size: 18px;
+            color: #cbd5e1;
+            margin-bottom: 40px;
+        }
+
+        .cards {
+    display: flex;
+    gap: 25px;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin-top: 45px;
+}
+
+        .card {
+            background: white;
+            color: #111827;
+            width: 320px;
+            border-radius: 20px;
+            padding: 30px 25px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.25);
+            transition: 0.3s ease;
+            cursor: pointer;
+        }
+
+        .card h2 {
+            margin-top: 0;
+            margin-bottom: 12px;
+        }
+
+        .card p {
+            color: #4b5563;
+            min-height: 50px;
+        }
+
+        .btn {
+            display: inline-block;
+            margin-top: 20px;
+            padding: 14px 24px;
+            border-radius: 12px;
+            text-decoration: none;
+            color: white;
+            font-weight: bold;
+        }
+        .btn:hover {
+    transform: scale(1.05);
+    transition: 0.3s;
+    opacity: 0.92;
+}
+        .heart-btn {
+            background: #2563eb;
+        }
+
+        .diabetes-btn {
+            background: #dc2626;
+        }
+        .stroke-btn {
+            background: #16a34a;
+        }
+        .note {
+            margin-top: 35px;
+            background: #fff7ed;
+            color: #9a3412;
+            border: 1px solid #fdba74;
+            padding: 16px;
+            border-radius: 14px;
+            font-size: 15px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="title">
+    Health AI Platformu
+    <span class="live-badge">🟢 Live AI Demo</span>
+</div>
+        <div class="subtitle">Demo modüles for decision support</div>
+        <div class="hero-description">
+    An AI-powered healthcare decision support platform designed to analyze multiple disease risks,
+    explain prediction results with AI interpretation, and generate medical-style PDF reports.
+</div>
+
+<div class="feature-row">
+    <span>🤖 Machine Learning</span>
+    <span>📊 SHAP Explainability</span>
+    <span>📄 PDF Reports</span>
+    <span>🌍 English Demo</span>
+</div>
+
+        <div class="cards">
+            <div class="card">
+                <h2>❤️  Heart Analysis</h2>
+                <p>Demo module for heart disease risk assessment.</p>
+                <a href="/heart" class="btn heart-btn">Go to Heart Module</a>
+            </div>
+
+            <div class="card">
+                <h2>🩸 Diabetes Analysis</h2>
+                <p>Demo module for diabetes risk assessment.</p>
+                <a href="/diabetes" class="btn diabetes-btn">Go to Diabetes Module</a>
+            </div>
+            <div class="card">
+                <h2>🧠 Stroke Analysis</h2>
+                <p>Demo module for stroke risk assessment.</p>
+                <a href="/stroke" class="btn stroke-btn">Go to Stroke Module</a>
+            </div>
+        </div>
+
+        <div class="note">
+            This platform is intended for educational and demo purposes only. It is not a substitute for clinical judgment, diagnosis, or treatment.
+        </div>
+    </div>
+</body>
+</html>

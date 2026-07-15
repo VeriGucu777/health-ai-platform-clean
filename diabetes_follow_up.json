@@ -1,0 +1,42 @@
+[
+    {
+        "patient_name": "6",
+        "disease": "Diabetes",
+        "result": "Diabetes risk PRESENT",
+        "risk_probability": 100.0,
+        "created_date": "2026-07-02",
+        "follow_up_date": "2026-09-30",
+        "doctor_note": "High diabetes risk detected. Follow-up control is recommended.",
+        "status": "Waiting"
+    },
+    {
+        "patient_name": "6",
+        "disease": "Diabetes",
+        "result": "Diabetes risk PRESENT",
+        "risk_probability": 100.0,
+        "created_date": "2026-07-02",
+        "follow_up_date": "2026-09-30",
+        "doctor_note": "High diabetes risk detected. Follow-up control is recommended.",
+        "status": "Waiting"
+    },
+    {
+        "patient_name": "Ümmü Gülsüm",
+        "disease": "Diabetes",
+        "result": "Diabetes risk PRESENT",
+        "risk_probability": 94.09,
+        "created_date": "2026-07-02",
+        "follow_up_date": "2026-09-30",
+        "doctor_note": "High diabetes risk detected. Follow-up control is recommended.",
+        "status": "Waiting"
+    },
+    {
+        "patient_name": "İrem Nur",
+        "disease": "Diabetes",
+        "result": "Diabetes risk PRESENT",
+        "risk_probability": 90.48,
+        "created_date": "2026-07-02",
+        "follow_up_date": "2026-10-15",
+        "doctor_note": "High diabetes risk detected. Follow-up control is recommended.",
+        "status": "Waiting"
+    }
+]

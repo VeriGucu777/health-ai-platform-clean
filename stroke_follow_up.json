@@ -1,0 +1,12 @@
+[
+    {
+        "patient_name": "ümmü gülsüm demir",
+        "disease": "Stroke",
+        "result": "Low Risk",
+        "risk_probability": 18.64,
+        "created_date": "2026-07-15",
+        "follow_up_date": "2026-10-13",
+        "doctor_note": "Stroke risk detected. Follow-up control is recommended.",
+        "status": "Waiting"
+    }
+]
